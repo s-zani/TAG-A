@@ -1,0 +1,1355 @@
+<title>Handout LAB S1 Gruppo A</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+<!-- Generato da lavoro claude/genera_handout_html.py a partire da handout_template.html: non modificare a mano -->
+<style>
+/* Layout: sommario dei passi fisso a sinistra e un passo alla volta in una colonna di lettura da 720px; su telefono il sommario diventa una striscia di numeri sopra il passo */
+:root{
+  --bg:#FBFDFF; --bg-elev:#FFFFFF; --fg:#1C1C23; --muted:rgba(28,28,35,.66);
+  --surface:rgba(28,28,35,.045); --surface-strong:rgba(28,28,35,.085); --line:rgba(28,28,35,.12);
+  --accent:#2C1AE2; --accent-ink:#2C1AE2; --accent-hover:#2121A3; --on-accent:#FBFDFF; --accent-soft:rgba(44,26,226,.065);
+  --hl:#FFEB5F; --hl-hover:#DDCC50; --on-hl:#1C1C23; --hl-soft:rgba(255,235,95,.42);
+  --shadow:0 1px 2px rgba(28,28,35,.08),0 10px 30px rgba(28,28,35,.12);
+  --scrim:rgba(16,16,20,.38);
+  --f-display:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --f-body:'Figtree',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --r-sm:8px; --r-md:12px; --r-lg:16px; --r-pill:999px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#16161C; --bg-elev:#212129; --fg:#F2F3F7; --muted:rgba(242,243,247,.68);
+    --surface:rgba(251,253,255,.05); --surface-strong:rgba(251,253,255,.10); --line:rgba(251,253,255,.14);
+    --accent:#3D2DF0; --accent-ink:#A9A1FF; --accent-hover:#5446FF; --on-accent:#FBFDFF; --accent-soft:rgba(140,128,255,.12);
+    --hl:#FFEB5F; --hl-hover:#DDCC50; --on-hl:#1C1C23; --hl-soft:rgba(255,235,95,.14);
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px rgba(0,0,0,.45);
+    --scrim:rgba(0,0,0,.55);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16161C; --bg-elev:#212129; --fg:#F2F3F7; --muted:rgba(242,243,247,.68);
+  --surface:rgba(251,253,255,.05); --surface-strong:rgba(251,253,255,.10); --line:rgba(251,253,255,.14);
+  --accent:#3D2DF0; --accent-ink:#A9A1FF; --accent-hover:#5446FF; --on-accent:#FBFDFF; --accent-soft:rgba(140,128,255,.12);
+  --hl:#FFEB5F; --hl-hover:#DDCC50; --on-hl:#1C1C23; --hl-soft:rgba(255,235,95,.14);
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px rgba(0,0,0,.45);
+  --scrim:rgba(0,0,0,.55);
+  color-scheme:dark;
+}
+
+[hidden]{display:none!important}
+*,*::before,*::after{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2.5px solid var(--accent-ink);outline-offset:2px;border-radius:6px}
+.i{width:20px;height:20px;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.i.sm{width:16px;height:16px}
+mark{background:var(--hl);color:var(--on-hl);padding:0 .14em;border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.wrap{padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+
+/* barra in alto */
+.topbar{position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:10px;padding-block:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:baseline;gap:10px;margin-right:auto;min-width:0}
+.brand b{font-family:var(--f-display);font-weight:800;font-size:16px;letter-spacing:-.01em;white-space:nowrap}
+.brand span{color:var(--muted);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tbtn{display:inline-flex;align-items:center;gap:7px;border:0;border-radius:var(--r-pill);padding:8px 13px;font-weight:600;font-size:14.5px;line-height:1.1;cursor:pointer;background:var(--surface-strong);color:var(--fg);white-space:nowrap}
+.tbtn:hover{background:var(--line)}
+.tbtn.close{background:var(--hl);color:var(--on-hl)}
+.tbtn.close:hover,.band .btn:hover{background:var(--hl-hover)}
+.tbtn .short{display:none}
+.ctx.empty{background:var(--hl-soft)}
+
+/* struttura */
+.shell{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:250px minmax(0,1fr);gap:56px;padding-block:36px 96px}
+.toc{position:sticky;top:calc(env(safe-area-inset-top, 0px) + 80px);align-self:start;display:grid;gap:18px}
+.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.toc .cap{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:14px 10px 4px}
+.toc button{display:grid;grid-template-columns:24px minmax(0,1fr) 18px;align-items:start;gap:10px;width:100%;text-align:left;padding:8px 10px;border-radius:var(--r-sm);background:none;border:0;color:var(--muted);font-size:14.5px;line-height:1.35;cursor:pointer}
+.toc button:hover{background:var(--surface);color:var(--fg)}
+.toc button[aria-current="step"]{background:var(--surface-strong);color:var(--fg);font-weight:600}
+.toc .n{font-family:var(--f-display);font-weight:800;font-variant-numeric:tabular-nums}
+.toc .ok{visibility:hidden;color:var(--accent-ink);margin-top:1px}
+.toc button.done .ok{visibility:visible}
+.toc .help{font-size:14px;line-height:1.45;color:var(--muted);padding:14px 10px 0;border-top:1px solid var(--line)}
+
+.view{min-width:0;max-width:720px;display:flex;flex-direction:column;gap:34px}
+.head{display:grid;gap:12px}
+.eyebrow{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.eyebrow .where{color:var(--accent-ink)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,3.6vw,38px);line-height:1.12;letter-spacing:-.015em;margin:0;text-wrap:balance}
+h2.sec{font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0}
+h3{font-family:var(--f-display);font-weight:700;font-size:19px;line-height:1.3;margin:0;text-wrap:balance}
+p{margin:0}
+.lead{font-size:18.5px;line-height:1.55;max-width:62ch}
+.goal{display:flex;gap:10px;align-items:flex-start;font-size:18px;line-height:1.45}
+.goal .i{color:var(--accent-ink);margin-top:3px}
+.block{display:grid;gap:14px;min-width:0}
+.muted{color:var(--muted)}
+.small{font-size:15px;line-height:1.5}
+.fname{font-weight:600;background:var(--surface-strong);padding:1px 6px;border-radius:5px;font-size:.93em;white-space:nowrap}
+.term{background:none;border:0;padding:0;cursor:help;border-bottom:1.5px dotted var(--accent-ink);line-height:inherit}
+.term:hover{color:var(--accent-ink)}
+.link{background:none;border:0;padding:0;color:var(--accent-ink);font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+/* azioni numerate */
+ol.actions{counter-reset:a;list-style:none;margin:0;padding:0;display:grid;gap:22px}
+ol.actions > li{counter-increment:a;display:grid;grid-template-columns:30px minmax(0,1fr);gap:14px}
+ol.actions > li::before{content:counter(a);width:28px;height:28px;border-radius:50%;background:var(--hl);color:var(--on-hl);font-family:var(--f-display);font-weight:800;font-size:14px;display:grid;place-items:center;margin-top:-1px}
+.body{min-width:0;display:grid;gap:12px}
+
+/* testo da incollare */
+.paste{background:var(--accent-soft);border-radius:var(--r-lg);padding:14px 16px 16px;display:grid;gap:8px;min-width:0}
+.paste-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.paste-label{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--accent-ink)}
+.paste-text{white-space:pre-wrap;overflow-wrap:anywhere;font-size:16.5px;line-height:1.5}
+.paste.doc .paste-text{font-size:15.5px;line-height:1.55}
+.paste.inline{grid-template-columns:minmax(0,1fr) auto;align-items:center;padding:10px 10px 10px 14px;gap:12px}
+.paste.inline .paste-text{font-size:15.5px}
+.copy{display:inline-flex;align-items:center;gap:6px;border:0;border-radius:var(--r-sm);background:var(--accent);color:var(--on-accent);font-weight:600;font-size:14px;line-height:1;padding:9px 12px;cursor:pointer;white-space:nowrap}
+.copy:hover{background:var(--accent-hover)}
+.copy:active{transform:scale(.98)}
+.copy[disabled]{opacity:.42;cursor:not-allowed;transform:none}
+.copy.done{background:var(--fg);color:var(--bg)}
+.ph{color:var(--muted);font-style:italic}
+
+/* riquadri */
+.expect{background:var(--surface);border-radius:var(--r-lg);padding:18px 20px;display:grid;gap:12px}
+.ticks{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.ticks li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px}
+.ticks .i{color:var(--accent-ink);margin-top:3px}
+.note{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;padding:16px 18px;border-radius:var(--r-lg);background:var(--surface)}
+.note > .i{margin-top:2px}
+.note.warn{background:var(--hl-soft)}
+.note.accent{background:var(--accent-soft)}
+.note.accent > .i{color:var(--accent-ink)}
+.note .body{gap:8px}
+.note strong.t{font-weight:700}
+
+/* se non succede */
+.fixes{border-top:1px solid var(--line)}
+.fixes details{border-bottom:1px solid var(--line)}
+.fixes summary{list-style:none;display:grid;grid-template-columns:20px minmax(0,1fr) 18px;gap:10px;align-items:start;padding:13px 2px;cursor:pointer;font-weight:600;line-height:1.4}
+.fixes summary::-webkit-details-marker{display:none}
+.fixes summary .i{margin-top:1px}
+.fixes summary .chev{color:var(--muted);transition:transform .15s ease}
+.fixes details[open] summary .chev{transform:rotate(90deg)}
+.fix-body{padding:0 2px 16px 32px;display:grid;gap:10px}
+
+/* gate */
+.gate{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;border-top:1px solid var(--line)}
+.check{display:flex;gap:12px;align-items:flex-start;cursor:pointer;max-width:52ch;line-height:1.45}
+.check input{width:22px;height:22px;margin:1px 0 0;accent-color:var(--accent);flex:0 0 auto;cursor:pointer}
+.check .sub{display:block;color:var(--muted);font-size:15px;margin-top:3px}
+.checklist{display:grid;gap:12px;padding:16px 18px;border-radius:var(--r-lg);background:var(--surface)}
+.navbtns{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:var(--r-sm);padding:12px 16px;font-weight:600;font-size:15.5px;line-height:1.1;cursor:pointer}
+.btn.primary{background:var(--accent);color:var(--on-accent)}
+.btn.primary:hover{background:var(--accent-hover)}
+.btn.ghost{background:var(--surface-strong);color:var(--fg)}
+.btn.ghost:hover{background:var(--line)}
+.btn:active{transform:scale(.98)}
+
+/* scelte */
+.choose{display:grid;gap:16px;padding:22px;background:var(--surface);border-radius:var(--r-lg)}
+.choose .row{display:grid;gap:10px}
+.choose .q{font-family:var(--f-display);font-weight:700;font-size:17px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{border:0;border-radius:var(--r-pill);padding:10px 16px;background:var(--bg-elev);color:var(--fg);font-weight:600;font-size:15.5px;line-height:1;cursor:pointer;box-shadow:inset 0 0 0 1px var(--line)}
+.opt:hover{box-shadow:inset 0 0 0 1.5px var(--accent-ink)}
+.opt[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);box-shadow:none}
+.status{font-size:15.5px}
+.fncards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fncard{display:grid;gap:6px;align-content:start;text-align:left;border:0;border-radius:var(--r-lg);padding:16px;background:var(--bg-elev);color:var(--fg);box-shadow:inset 0 0 0 1px var(--line);cursor:pointer;min-width:0}
+.fncard:hover{box-shadow:inset 0 0 0 1.5px var(--accent-ink)}
+.fncard[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);box-shadow:none}
+.fncard .fnn{font-family:var(--f-display);font-weight:800;font-size:19px}
+.fncard .fd{font-size:14.5px;line-height:1.45;color:var(--muted)}
+.fncard[aria-pressed="true"] .fd{color:var(--on-accent);opacity:.88}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.fact{display:grid;gap:10px;align-content:start;min-width:0}
+.fact ul,.fact ol{margin:0;padding-left:18px;display:grid;gap:8px;font-size:15.5px;line-height:1.5}
+.when{list-style:none;padding:0!important;margin:0}
+.when li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:8px}
+.when b{font-family:var(--f-display);font-weight:800;font-variant-numeric:tabular-nums}
+.files{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.file{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:var(--r-sm);background:var(--surface-strong);font-weight:500;font-size:14.5px;line-height:1.3;max-width:100%}
+.file .i{width:16px;height:16px;color:var(--muted)}
+.file span{overflow-wrap:anywhere}
+.stepsmap{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--line)}
+.stepsmap button{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:14px;align-items:center;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:12px 2px;cursor:pointer}
+.stepsmap button:hover .t{color:var(--accent-ink)}
+.stepsmap .n{width:28px;height:28px;border-radius:50%;background:var(--hl);color:var(--on-hl);font-family:var(--f-display);font-weight:800;font-size:14px;display:grid;place-items:center}
+.stepsmap .t{font-weight:600}
+.stepsmap .w{color:var(--muted);font-size:14px;white-space:nowrap}
+
+/* scheda */
+.scheda{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.part{background:var(--surface);border-radius:var(--r-md);padding:12px;display:grid;gap:6px;align-content:start;min-width:0}
+.part .pn{font-family:var(--f-display);font-weight:800;font-size:15px}
+.part .pt{font-size:14.5px;line-height:1.35;font-weight:600}
+.part .ps{font-size:13px;color:var(--muted)}
+.part.todo{background:var(--hl-soft)}
+.part.todo .ps{color:var(--fg);font-weight:600}
+.compare{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.compare > div{display:grid;gap:8px;align-content:start;padding:4px 0}
+.compare > div:first-child{padding-right:20px;border-right:1px solid var(--line)}
+.compare > div:last-child{padding-left:20px}
+.compare .lab{display:flex;gap:8px;align-items:center;font-size:12.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.compare > div:last-child .lab{color:var(--accent-ink)}
+.compare q{font-size:16.5px;quotes:"«" "»"}
+
+/* fonti sì / no */
+.split{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}
+.split > div{display:grid;gap:10px;align-content:start;min-width:0}
+.split > div:first-child{padding-right:20px;border-right:1px solid var(--line)}
+.split > div:last-child{padding-left:20px}
+.split .files{flex-direction:column;align-items:flex-start}
+.split .no .file{background:var(--surface);color:var(--muted);text-decoration:line-through;text-decoration-color:var(--muted)}
+
+/* sequenza */
+.tl{list-style:none;margin:0;padding:0;display:grid}
+.tl > li{position:relative;padding:0 0 22px 30px;display:grid;gap:8px}
+.tl > li::before{content:"";position:absolute;left:5px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent)}
+.tl > li::after{content:"";position:absolute;left:10px;top:22px;bottom:2px;width:2px;background:var(--line)}
+.tl > li:last-child{padding-bottom:0}
+.tl > li:last-child::after{display:none}
+.tl .k{font-size:12.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--accent-ink)}
+
+/* regole */
+.rules{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.rule{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;padding:14px 16px;background:var(--surface);border-radius:var(--r-lg)}
+.rule .rn{font-family:var(--f-display);font-weight:800;font-size:24px;line-height:1.1}
+.rule .rb{display:grid;gap:5px;min-width:0}
+.rule .rt{font-weight:700}
+.rule .rd{font-size:15px;line-height:1.5}
+.rule .rq{font-size:14.5px;color:var(--muted)}
+
+/* schede delle prove */
+.tabs{display:flex;gap:4px;flex-wrap:wrap;padding:4px;background:var(--surface);border-radius:var(--r-md)}
+.tab{border:0;background:none;border-radius:9px;padding:9px 12px;font-weight:600;font-size:14.5px;line-height:1.2;color:var(--muted);cursor:pointer;text-align:left}
+.tab:hover{color:var(--fg)}
+.tab[aria-selected="true"]{background:var(--bg-elev);color:var(--fg);box-shadow:0 1px 2px rgba(28,28,35,.10)}
+.tab .tn{font-family:var(--f-display);font-weight:800;margin-right:4px}
+.panel{display:grid;gap:26px;min-width:0}
+.panel-foot{display:flex;justify-content:flex-end}
+.extra{margin:0;padding-left:20px;display:grid;gap:10px}
+
+/* giro dei file */
+.giro{display:grid;gap:12px}
+.giro-row{display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,200px);gap:12px;align-items:center;padding:14px;border-radius:var(--r-lg);background:var(--surface)}
+.giro-row .arrow{color:var(--muted)}
+.giro-dest{display:grid;gap:2px}
+.giro-dest strong{font-family:var(--f-display);font-weight:700}
+.giro-dest span{font-size:14px;color:var(--muted);line-height:1.4}
+.giro-row.keep{background:var(--accent-soft)}
+.giro-row.keep .giro-dest strong{color:var(--accent-ink)}
+
+/* confronto chat / file */
+.same{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:12px;align-items:center}
+.same > div{background:var(--surface);border-radius:var(--r-md);padding:14px;display:grid;gap:4px;min-width:0}
+.same .eq{font-family:var(--f-display);font-weight:800;font-size:26px;color:var(--accent-ink)}
+.same b{font-size:14.5px}
+.same span{font-size:14px;color:var(--muted);line-height:1.4}
+
+/* rientro */
+.rounds{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.round{display:grid;grid-template-columns:48px minmax(0,1fr);gap:14px;padding:18px;background:var(--surface);border-radius:var(--r-lg)}
+.round .rn{font-family:var(--f-display);font-weight:800;font-size:34px;line-height:1}
+.round .body{gap:8px}
+.win{display:flex;gap:8px;align-items:flex-start;font-weight:600}
+.win .i{color:var(--accent-ink);margin-top:2px}
+textarea{width:100%;min-height:86px;border-radius:var(--r-md);border:1px solid var(--line);background:var(--bg-elev);color:var(--fg);font:inherit;font-size:16px;line-height:1.5;padding:12px 14px;resize:vertical}
+textarea:focus{outline:2.5px solid var(--accent-ink);outline-offset:1px}
+.draft-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.band{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;padding:18px 20px;border-radius:var(--r-lg);background:var(--fg);color:var(--bg)}
+.band b{font-family:var(--f-display);font-weight:800;font-size:20px}
+.band .btn{background:var(--hl);color:var(--on-hl)}
+.needfn{display:grid;gap:10px;padding:16px 18px;border-radius:var(--r-lg);background:var(--hl-soft)}
+.needfn p{font-weight:600}
+
+/* flusso da stasera alla S4 */
+.flow{list-style:none;margin:0;padding:0;display:grid;gap:8px;counter-reset:f}
+.flow li{counter-increment:f;display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;padding:12px 14px;background:var(--surface);border-radius:var(--r-md)}
+.flow li::before{content:counter(f);font-family:var(--f-display);font-weight:800;color:var(--accent-ink)}
+.flow b{display:block}
+.flow span{font-size:14.5px;color:var(--muted);line-height:1.45}
+
+/* parole e regole */
+.scrim{position:fixed;inset:0;background:var(--scrim);z-index:40}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(470px,100%);background:var(--bg-elev);z-index:41;box-shadow:var(--shadow);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top, 0px);padding-bottom:env(safe-area-inset-bottom, 0px);padding-right:env(safe-area-inset-right, 0px)}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line)}
+.drawer-head b{font-family:var(--f-display);font-weight:800;font-size:18px}
+.drawer-nav{display:flex;gap:6px;flex-wrap:wrap;padding:12px 20px 0}
+.drawer-body{overflow:auto;padding:16px 20px 40px;display:grid;gap:30px;align-content:start}
+.drawer-body section{display:grid;gap:12px}
+.drawer-body h2{font-family:var(--f-display);font-weight:800;font-size:20px;margin:0}
+.iconbtn{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;border:0;background:var(--surface-strong);cursor:pointer}
+dl.gloss{margin:0;display:grid;gap:12px}
+dl.gloss div{display:grid;gap:2px}
+dl.gloss dt{font-weight:700}
+dl.gloss dd{margin:0;font-size:15.5px;line-height:1.5}
+.pop{position:absolute;z-index:30;width:max-content;max-width:min(330px, calc(100vw - 32px));background:var(--bg-elev);color:var(--fg);box-shadow:var(--shadow);border-radius:var(--r-md);padding:12px 14px;font-size:15px;line-height:1.45;display:grid;gap:6px}
+.pop b{font-family:var(--f-display);font-weight:800}
+
+footer{padding-block:0 40px}
+footer p{max-width:1180px;margin:0 auto;font-size:13.5px;color:var(--muted)}
+
+@media (max-width: 900px){
+  .brand span{display:none}
+  .shell{grid-template-columns:minmax(0,1fr);gap:22px;padding-block:16px 72px}
+  .toc{position:static;gap:0}
+  .toc .cap,.toc .help{display:none}
+  .toc ol{display:flex;overflow-x:auto;gap:6px;padding-bottom:6px;scrollbar-width:thin}
+  .toc li{flex:0 0 auto}
+  .toc button{display:flex;padding:8px 13px;border-radius:var(--r-pill);background:var(--surface);gap:6px;align-items:center}
+  .toc .t{display:none}
+  .toc .n:empty::before{content:attr(data-short)}
+  .toc .ok{display:none}
+  .toc button.done{background:var(--accent-soft);color:var(--accent-ink)}
+  .toc button[aria-current="step"]{background:var(--fg);color:var(--bg)}
+  .facts{grid-template-columns:minmax(0,1fr);gap:24px}
+  .scheda{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width: 600px){
+  body{font-size:16.5px}
+  .tbtn .long{display:none}
+  .tbtn .short{display:inline}
+  .fncards{grid-template-columns:minmax(0,1fr)}
+  .compare,.split{grid-template-columns:minmax(0,1fr);gap:16px}
+  .compare > div:first-child,.split > div:first-child{padding-right:0;border-right:0;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .compare > div:last-child,.split > div:last-child{padding-left:0}
+  .giro-row{grid-template-columns:minmax(0,1fr)}
+  .giro-row .arrow{transform:rotate(90deg)}
+  .same{grid-template-columns:minmax(0,1fr)}
+  .same .eq{justify-self:center}
+  .stepsmap .w{display:none}
+  .paste.inline{grid-template-columns:minmax(0,1fr)}
+  .paste.inline .copy{justify-self:start}
+  .gate{flex-direction:column;align-items:stretch}
+  .navbtns{justify-content:space-between}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11.5" height="11.5" rx="2"/><path d="M15.5 8.5V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7.5a2 2 0 0 0 2 2h2.5"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M10.3 4.6L2.9 17.5A2 2 0 0 0 4.6 20.5h14.8a2 2 0 0 0 1.7-3L13.7 4.6a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4.5"/><path d="M12 17.2v.1"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12h.01"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 8.3 4.5 4 4.5v14c4.3 0 6.5.5 8 2 1.5-1.5 3.7-2 8-2v-14c-4.3 0-6.5.5-8 2z"/><path d="M12 6.5v14"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4"/><path d="M5 4h12l-2.5 4.5L17 13H5"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3.5 6.5a2 2 0 0 1 2-2h4l2 2.5h7a2 2 0 0 1 2 2v8.5a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.6v.1"/></symbol>
+</svg>
+
+<header class="topbar">
+  <div class="topbar-in wrap">
+    <div class="brand"><b>LAB S1 · Gruppo A</b><span>Banca Aurora · il vostro agente di lavoro</span></div>
+    <button class="tbtn ctx" id="ctx" type="button">Scegliete il sottogruppo</button>
+    <button class="tbtn" id="open-drawer" type="button" data-drawer="parole"><svg class="i sm"><use href="#i-book"/></svg><span class="long">Parole e regole</span><span class="short">Parole</span></button>
+    <button class="tbtn close" id="close-now" type="button"><svg class="i sm"><use href="#i-flag"/></svg><span class="long">È ora di chiudere</span><span class="short">Chiudere</span></button>
+  </div>
+</header>
+
+<div class="shell wrap">
+  <nav class="toc" aria-label="Passi del LAB">
+    <ol>
+      <li><button type="button" data-go="inizio"><span class="n" data-short="Inizio"></span><span class="t">Prima di cominciare</span><svg class="i sm ok"><use href="#i-check"/></svg></button></li>
+      <li class="cap" aria-hidden="true">In sala · 19:45</li>
+      <li><button type="button" data-go="passo-1"><span class="n">1</span><span class="t">In aula: cosa fate e come si crea il Progetto</span><svg class="i sm ok"><use href="#i-check"/></svg></button></li>
+      <li class="cap" aria-hidden="true">Nelle stanze</li>
+      <li><button type="button" data-go="passo-2"><span class="n">2</span><span class="t">Scegliete la funzione e compilate la scheda del team</span><svg class="i sm ok"><use href="#i-check"/></svg></button></li>
+      <li><button type="button" data-go="passo-3"><span class="n">3</span><span class="t">Create il Progetto e caricate i file</span><svg class="i sm ok"><use href="#i-check"/></svg></button></li>
+      <li><button type="button" data-go="passo-4"><span class="n">4</span><span class="t">Lanciate l'incarico e rispondete alle domande</span><svg class="i sm ok"><use href="#i-check"/></svg></button></li>
+      <li><button type="button" data-go="passo-5"><span class="n">5</span><span class="t">Leggete le istruzioni e incollatele</span><svg class="i sm ok"><use href="#i-check"/></svg></button></li>
+      <li><button type="button" data-go="passo-6"><span class="n">6</span><span class="t">Le 3 prove e il giro dei file</span><svg class="i sm ok"><use href="#i-check"/></svg></button></li>
+      <li><button type="button" data-go="passo-7"><span class="n">7</span><span class="t">La prova della chat nuova</span><svg class="i sm ok"><use href="#i-check"/></svg></button></li>
+      <li class="cap" aria-hidden="true">In sala · 21:10</li>
+      <li><button type="button" data-go="rientro"><span class="n" data-short="Rientro"></span><span class="t">Al rientro: il quiz</span><svg class="i sm ok"><use href="#i-check"/></svg></button></li>
+    </ol>
+    <p class="help">Bloccati? In Zoom premete <b>Chiedi aiuto</b>: Stefano passa nella vostra stanza.</p>
+  </nav>
+
+  <main>
+
+  <!-- ============ INIZIO ============ -->
+  <section class="view" data-view="inizio" aria-labelledby="h-inizio">
+    <div class="head">
+      <div class="eyebrow"><span>LAB · Sessione 1 · Prompting Base</span></div>
+      <h1 id="h-inizio">Costruite l'<mark>agente di lavoro</mark> del vostro team</h1>
+      <p class="lead">Lavorate in Banca Aurora, una banca retail di Milano. È finta, come tutti i dati del corso. Il vostro sottogruppo è uno dei team della banca: Finance, Marketing, HR o Sales, e lo scegliete voi nella stanza. Stasera costruite l'<button type="button" class="term" data-term="Agente">agente</button> del vostro team: un collega nuovo, bravissimo, che a ogni chat nuova ha dimenticato tutto. Lavora bene solo se trova i suoi appunti in ordine, e gli appunti se li scrive lui, in quattro file. Lo stesso agente lavorerà con voi anche nelle prossime tre sessioni.</p>
+    </div>
+
+    <div class="choose" id="scelta-sg">
+      <div class="row">
+        <span class="q" id="q-sg">Il vostro sottogruppo</span>
+        <div class="opts" role="group" aria-labelledby="q-sg"><button type="button" class="opt" data-set-sg="A1">A1</button><button type="button" class="opt" data-set-sg="A2">A2</button><button type="button" class="opt" data-set-sg="A3">A3</button><button type="button" class="opt" data-set-sg="A4">A4</button><button type="button" class="opt" data-set-sg="A5">A5</button><button type="button" class="opt" data-set-sg="A6">A6</button></div>
+      </div>
+      <p class="status muted" id="status">Serve per il nome del Progetto. La funzione la scegliete nella stanza, al passo 2: da lì la pagina vi mostra solo i vostri testi, pronti da copiare.</p>
+    </div>
+
+    <div class="facts">
+      <div class="fact">
+        <h2 class="sec">Quando</h2>
+        <ul class="when">
+          <li><b>19:45</b><span>LAB nella sala del Gruppo A (Link A), poi nelle stanze</span></li>
+          <li><b>21:10</b><span>si rientra per la restituzione a quiz</span></li>
+        </ul>
+        <p class="small muted">In mezzo vi guidano gli avvisi delle tutor: vi dicono a che punto dovreste essere e quando è ora di chiudere.</p>
+      </div>
+      <div class="fact">
+        <h2 class="sec">Chi fa cosa</h2>
+        <ul>
+          <li><b>Il pilota</b> ha ChatGPT Plus su un account personale, non quello aziendale. Condivide lo schermo e opera.</li>
+          <li><b>Gli altri</b> seguono sullo schermo del pilota e decidono con lui. Chi ha Plus fa da pilota di riserva.</li>
+        </ul>
+      </div>
+      <div class="fact">
+        <h2 class="sec">A fine LAB avete</h2>
+        <ol>
+          <li>un <button type="button" class="term" data-term="Progetto">Progetto</button> ChatGPT nell'account del pilota, con le istruzioni scritte dall'agente;</li>
+          <li>l'<button type="button" class="term" data-term="Archivio">archivio</button> dell'agente, che il pilota manda a tutto il sottogruppo;</li>
+          <li>un agente che ha superato le 3 prove e la prova della chat nuova.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2 class="sec">Cosa vi serve</h2>
+      <p>Le cartelle kit, una per funzione, nella cartella <span class="fname">Sessione 1 · 19 ottobre › Gruppo A</span> del Drive del corso. Se le avete scaricate come zip, estraetele prima. In ogni kit:</p>
+      <ul class="files">
+        <li class="file"><svg class="i"><use href="#i-file"/></svg><span>Guida al kit.pdf</span></li>
+        <li class="file"><svg class="i"><use href="#i-file"/></svg><span>Scheda del team (da compilare).docx</span></li>
+        <li class="file"><svg class="i"><use href="#i-folder"/></svg><span>Materiali del kit</span></li>
+      </ul>
+      <p class="small muted">Al passo 2, scelta la funzione, il pilota apre il kit di quella funzione.</p>
+    </div>
+
+    <div class="block">
+      <h2 class="sec">Come lavorate</h2>
+      <p>Il pilota opera, <b>il sottogruppo decide</b>: cosa scrivere nella scheda, cosa rispondere all'agente, se il risultato va bene. La scheda è da compilare e l'incarico lo scrivete voi, partendo dalla checklist del passo 4. Potete aggiungere materiali vostri, solo inventati.</p>
+      <div class="note warn"><svg class="i"><use href="#i-warn"/></svg><div class="body"><strong class="t">I dati sono tutti finti. Non caricate dati reali di clienti o colleghi.</strong></div></div>
+    </div>
+
+    <div class="block">
+      <h2 class="sec">I 7 passi</h2>
+      <ol class="stepsmap">
+        <li><button type="button" data-go="passo-1"><span class="n">1</span><span class="t">In aula: cosa fate e come si crea il Progetto</span><span class="w">in sala</span></button></li>
+        <li><button type="button" data-go="passo-2"><span class="n">2</span><span class="t">Scegliete la funzione e compilate la scheda del team</span><span class="w">nella stanza</span></button></li>
+        <li><button type="button" data-go="passo-3"><span class="n">3</span><span class="t">Create il Progetto e caricate i file</span><span class="w">nella stanza</span></button></li>
+        <li><button type="button" data-go="passo-4"><span class="n">4</span><span class="t">Lanciate l'incarico e rispondete alle domande</span><span class="w">nella stanza</span></button></li>
+        <li><button type="button" data-go="passo-5"><span class="n">5</span><span class="t">Leggete le istruzioni e incollatele</span><span class="w">nella stanza</span></button></li>
+        <li><button type="button" data-go="passo-6"><span class="n">6</span><span class="t">Le 3 prove e il giro dei file</span><span class="w">nella stanza</span></button></li>
+        <li><button type="button" data-go="passo-7"><span class="n">7</span><span class="t">La prova della chat nuova</span><span class="w">nella stanza</span></button></li>
+      </ol>
+    </div>
+
+    <div class="gate">
+      <p class="muted small">Le parole nuove sono sottolineate: toccatele per la spiegazione.</p>
+      <div class="navbtns"><button type="button" class="btn primary" data-go="passo-1">Cominciate dal passo 1<svg class="i"><use href="#i-right"/></svg></button></div>
+    </div>
+  </section>
+
+  <!-- ============ PASSO 1 ============ -->
+  <section class="view" data-view="passo-1" aria-labelledby="h-p1" hidden>
+    <div class="head">
+      <div class="eyebrow"><span>Passo 1 di 7</span><span class="where">Nella sala del Gruppo A, prima delle stanze</span></div>
+      <h1 id="h-p1">In aula: cosa fate e come si crea il Progetto</h1>
+      <p class="goal"><svg class="i"><use href="#i-target"/></svg><span>Sapere cosa fate nel LAB e rivedere dove si clicca, prima di dividervi.</span></p>
+    </div>
+    <div class="block">
+      <h2 class="sec">Cosa succede</h2>
+      <ol class="actions">
+        <li><div class="body"><p>Stefano vi spiega cosa fate nel LAB, passo per passo: gli stessi passi della demo, sulla vostra funzione.</p></div></li>
+        <li><div class="body">
+          <p>Poi vi fa rivedere, sul suo schermo, dove sono le cose in ChatGPT. Guardate dove:</p>
+          <ul class="ticks">
+            <li><svg class="i"><use href="#i-check"/></svg><span>si crea un <button type="button" class="term" data-term="Progetto">Progetto</button></span></li>
+            <li><svg class="i"><use href="#i-check"/></svg><span>sono le <button type="button" class="term" data-term="Fonti">fonti</button></span></li>
+            <li><svg class="i"><use href="#i-check"/></svg><span>si sceglie <button type="button" class="term" data-term="Work">Work</button></span></li>
+            <li><svg class="i"><use href="#i-check"/></svg><span>sono le <button type="button" class="term" data-term="Istruzioni del Progetto">istruzioni del Progetto</button></span></li>
+            <li><svg class="i"><use href="#i-check"/></svg><span>si carica un file nelle fonti (stasera)</span></li>
+            <li><svg class="i"><use href="#i-check"/></svg><span>si sostituisce un file nelle fonti (dal giro successivo)</span></li>
+          </ul>
+        </div></li>
+        <li><div class="body"><p>Le domande fatele adesso. Poi si aprono le stanze, e lì per prima cosa scegliete la funzione.</p></div></li>
+      </ol>
+    </div>
+    <div class="gate">
+      <label class="check"><input type="checkbox" data-gate="passo-1"><span><b>Prima di andare avanti:</b> sapete cosa fate e dove si clicca.</span></label>
+      <div class="navbtns"><button type="button" class="btn ghost" data-go="inizio"><svg class="i"><use href="#i-left"/></svg>Indietro</button><button type="button" class="btn primary" data-go="passo-2">Passo 2<svg class="i"><use href="#i-right"/></svg></button></div>
+    </div>
+  </section>
+
+  <!-- ============ PASSO 2 ============ -->
+  <section class="view" data-view="passo-2" aria-labelledby="h-p2" hidden>
+    <div class="head">
+      <div class="eyebrow"><span>Passo 2 di 7</span><span class="where">Nella vostra stanza</span></div>
+      <h1 id="h-p2">Scegliete la funzione e compilate la scheda del team</h1>
+      <p class="goal"><svg class="i"><use href="#i-target"/></svg><span>Scegliere il vostro team di Banca Aurora e scrivere quello che l'agente non può indovinare.</span></p>
+    </div>
+    <div class="block">
+      <h2 class="sec">Cosa fate</h2>
+      <ol class="actions">
+        <li><div class="body">
+          <p><b>Per prima cosa scegliete la funzione</b>, parlandone tra voi. Prendete quella più vicina al vostro lavoro, o quella che vi incuriosisce di più. Va bene anche se un altro sottogruppo sceglie la stessa. Ve la tenete per tutte e quattro le serate.</p>
+          <div class="choose" id="scelta-fn">
+            <span class="q" id="q-fn">La vostra funzione</span>
+            <div class="fncards" role="group" aria-labelledby="q-fn" data-fncards></div>
+            <p class="small muted">Toccatela qui: da questo momento la pagina vi mostra i testi di quella funzione.</p>
+          </div>
+        </div></li>
+        <li><div class="body"><p>Il pilota apre la cartella <span class="fname" data-bind="kit"></span> in <span class="fname">Sessione 1 · 19 ottobre › Gruppo A</span>.</p></div></li>
+        <li><div class="body">
+          <p>Compilate <b>insieme</b> la <span class="fname">Scheda del team</span>: almeno una riga per ognuna delle 8 parti. Se il tempo stringe, partite dalle parti in giallo.</p>
+          <div class="scheda">
+            <div class="part todo"><span class="pn">1</span><span class="pt">Chi siamo</span><span class="ps">se il tempo stringe, da qui</span></div>
+            <div class="part"><span class="pn">2</span><span class="pt">Cosa facciamo</span><span class="ps">da compilare</span></div>
+            <div class="part"><span class="pn">3</span><span class="pt">Obiettivi dell'anno</span><span class="ps">da compilare</span></div>
+            <div class="part todo"><span class="pn">4</span><span class="pt">Con chi lavoriamo</span><span class="ps">se il tempo stringe, da qui</span></div>
+            <div class="part"><span class="pn">5</span><span class="pt">Come scriviamo</span><span class="ps">da compilare</span></div>
+            <div class="part todo"><span class="pn">6</span><span class="pt">Regole</span><span class="ps">se il tempo stringe, da qui</span></div>
+            <div class="part"><span class="pn">7</span><span class="pt">Le nostre parole</span><span class="ps">da compilare</span></div>
+            <div class="part todo"><span class="pn">8</span><span class="pt">Cosa deve chiederci prima di fare</span><span class="ps">se il tempo stringe, da qui</span></div>
+          </div>
+        </div></li>
+        <li><div class="body"><p>Per ogni riga, chiedetevi: <b>cosa deve trovare scritto il collega nuovo per lavorare bene con noi?</b></p></div></li>
+      </ol>
+    </div>
+    <div class="block">
+      <h2 class="sec">Cosa deve succedere</h2>
+      <div class="expect">
+        <p><b>Ogni regola ha il suo perché.</b></p>
+        <div class="compare">
+          <div><span class="lab"><svg class="i sm"><use href="#i-x"/></svg>Non basta</span><q>Niente sigle interne.</q></div>
+          <div><span class="lab"><svg class="i sm"><use href="#i-check"/></svg>Così sì</span><q>Niente sigle interne nei messaggi alle filiali, perché in filiale non le conoscono.</q></div>
+        </div>
+      </div>
+    </div>
+    <div class="note"><svg class="i"><use href="#i-info"/></svg><div class="body"><p><strong class="t">Vi bloccate?</strong> Scrivete solo quello che sapete e lasciate vuoto il resto. Sarà l'agente a chiedervelo.</p></div></div>
+    <div class="gate">
+      <label class="check"><input type="checkbox" data-gate="passo-2"><span><b>Prima di andare avanti:</b> funzione scelta, scheda pronta e salvata in .docx.<span class="sub">Se l'avete aperta in Google Docs, riscaricatela in formato .docx.</span></span></label>
+      <div class="navbtns"><button type="button" class="btn ghost" data-go="passo-1"><svg class="i"><use href="#i-left"/></svg>Indietro</button><button type="button" class="btn primary" data-go="passo-3">Passo 3<svg class="i"><use href="#i-right"/></svg></button></div>
+    </div>
+  </section>
+
+  <!-- ============ PASSO 3 ============ -->
+  <section class="view" data-view="passo-3" aria-labelledby="h-p3" hidden>
+    <div class="head">
+      <div class="eyebrow"><span>Passo 3 di 7</span><span class="where">Nella vostra stanza</span></div>
+      <h1 id="h-p3">Create il Progetto e caricate i file</h1>
+      <p class="goal"><svg class="i"><use href="#i-target"/></svg><span>Dare all'agente il suo spazio di lavoro.</span></p>
+    </div>
+    <div class="needfn" data-needfn="fn sg"></div>
+    <div class="block">
+      <h2 class="sec">Cosa fate</h2>
+      <ol class="actions">
+        <li><div class="body">
+          <p>In ChatGPT, nella barra a sinistra, create un <b>nuovo Progetto</b> con questo nome:</p>
+          <div class="paste inline"><div class="paste-text" data-bind="progetto"></div><button type="button" class="copy" data-copy data-needs="fn sg"><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div>
+        </div></li>
+        <li><div class="body">
+          <p>Caricate nelle <button type="button" class="term" data-term="Fonti">fonti</button> del Progetto questi file:</p>
+          <div class="split">
+            <div>
+              <h2 class="sec">Nelle fonti</h2>
+              <ul class="files" data-mat></ul>
+            </div>
+            <div class="no">
+              <h2 class="sec">Non caricate</h2>
+              <ul class="files">
+                <li class="file"><svg class="i"><use href="#i-file"/></svg><span>Guida al kit.pdf</span></li>
+                <li class="file"><svg class="i"><use href="#i-file"/></svg><span>l'incarico (lo scrivete al passo 4)</span></li>
+              </ul>
+            </div>
+          </div>
+        </div></li>
+      </ol>
+    </div>
+    <div class="note warn"><svg class="i"><use href="#i-warn"/></svg><div class="body"><p><strong class="t">Non condividete il Progetto.</strong> Un Progetto condiviso perde la modalità Work, e non si torna indietro. Il sottogruppo lavora sullo schermo del pilota; alla fine il pilota vi manda i file dell'archivio.</p></div></div>
+    <div class="block">
+      <h2 class="sec">Cosa deve succedere</h2>
+      <div class="expect"><ul class="ticks"><li><svg class="i"><use href="#i-check"/></svg><span>Nelle fonti vedete la scheda e i materiali.</span></li></ul></div>
+    </div>
+    <div class="block">
+      <h2 class="sec">Se non succede</h2>
+      <div class="fixes">
+        <details><summary><svg class="i"><use href="#i-warn"/></svg><span>I file sono finiti come allegati di una chat</span><svg class="i sm chev"><use href="#i-chev"/></svg></summary>
+          <div class="fix-body"><p>Caricateli di nuovo nelle fonti del Progetto: la chat di domani non vedrebbe gli allegati di oggi.</p></div></details>
+      </div>
+    </div>
+    <div class="gate">
+      <label class="check"><input type="checkbox" data-gate="passo-3"><span><b>Prima di andare avanti:</b> Progetto creato, file nelle fonti.</span></label>
+      <div class="navbtns"><button type="button" class="btn ghost" data-go="passo-2"><svg class="i"><use href="#i-left"/></svg>Indietro</button><button type="button" class="btn primary" data-go="passo-4">Passo 4<svg class="i"><use href="#i-right"/></svg></button></div>
+    </div>
+  </section>
+
+  <!-- ============ PASSO 4 ============ -->
+  <section class="view" data-view="passo-4" aria-labelledby="h-p4" hidden>
+    <div class="head">
+      <div class="eyebrow"><span>Passo 4 di 7</span><span class="where">Nella vostra stanza</span></div>
+      <h1 id="h-p4">Lanciate l'incarico e rispondete alle domande</h1>
+      <p class="goal"><svg class="i"><use href="#i-target"/></svg><span>Far nascere l'agente, con il suo archivio.</span></p>
+    </div>
+    <div class="needfn" data-needfn="fn"></div>
+    <div class="block">
+      <h2 class="sec">Cosa fate</h2>
+      <ol class="actions">
+        <li><div class="body">
+          <p><b>Scrivete insieme l'incarico</b>, cioè il testo con cui date il compito all'agente. Il pilota lo scrive in un documento a parte, il sottogruppo detta. Spuntate la checklist mentre scrivete: dentro ci devono essere</p>
+          <div class="checklist">
+            <label class="check"><input type="checkbox" data-check="a4-leggere"><span>cosa deve leggere (le fonti) e che prima di partire vi faccia le domande;</span></label>
+            <label class="check"><input type="checkbox" data-check="a4-archivio"><span>l'archivio da costruire: i quattro file <span class="fname">00 LEGGIMI</span> <span class="fname">01 IDENTITÀ</span> <span class="fname">02 REGOLE</span> <span class="fname">03 STATO</span>, oppure una struttura che vi propone lui (la frase è qui sotto);</span></label>
+            <label class="check"><input type="checkbox" data-check="a4-nomi"><span>qualunque struttura scegliate: <span class="fname">02 REGOLE</span>, <span class="fname">03 STATO</span> con "Da chiedere", e i nomi <span class="fname">CONSEGNE - titolo - data</span> e <span class="fname">MODELLI - titolo</span>. Servono alle prove;</span></label>
+            <label class="check"><input type="checkbox" data-check="a4-regole"><span>le <b>5 regole</b> qui sotto, con parole vostre;</span></label>
+            <label class="check"><input type="checkbox" data-check="a4-consegna"><span>cosa vi deve consegnare alla fine: i file e le istruzioni del Progetto, al massimo 15 righe.</span></label>
+          </div>
+          <p class="small">Se volete che sia lui a proporre la struttura dell'archivio:</p>
+          <div class="paste inline"><div class="paste-text">Proponimi tu la struttura migliore per il nostro lavoro, spiegami perché, poi creala.</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div>
+          <h2 class="sec">Le 5 regole: cosa devono far fare all'agente</h2>
+          <ol class="rules" data-rules></ol>
+        </div></li>
+        <li><div class="body"><p>Aprite una chat <b>dentro il Progetto</b> e scegliete la modalità <button type="button" class="term" data-term="Work">Work</button>.</p></div></li>
+        <li><div class="body"><p>Incollate l'incarico e inviatelo.</p></div></li>
+      </ol>
+    </div>
+    <div class="block">
+      <h2 class="sec">Cosa deve succedere</h2>
+      <ol class="tl">
+        <li><span class="k">Prima</span><p>L'agente vi fa delle domande. <b>Rispondete insieme, in un solo messaggio</b>: è il momento in cui gli passate quello che sapete. Se una risposta non la sapete:</p>
+          <div class="paste inline"><div class="paste-text">Non lo so, segnalalo in STATO, sotto 'Da chiedere'.</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div></li>
+        <li><span class="k">Poi</span><p>Lavora per qualche minuto: a schermo vedete i passi che fa.</p></li>
+        <li><span class="k">Alla fine</span><p>In chat compaiono i file dell'archivio (i quattro standard, o quelli della struttura che vi ha proposto) e un testo con le <button type="button" class="term" data-term="Istruzioni del Progetto">istruzioni del Progetto</button>.</p>
+</li>
+      </ol>
+    </div>
+    <div class="block">
+      <h2 class="sec">Se non succede</h2>
+      <div class="fixes">
+        <details><summary><svg class="i"><use href="#i-warn"/></svg><span>La tutor vi avvisa e l'incarico non è ancora pronto</span><svg class="i sm chev"><use href="#i-chev"/></svg></summary>
+          <div class="fix-body"><p>Chiudetelo così: i quattro file standard, le 5 regole copiate da qui sotto, la richiesta di farvi prima le domande e la consegna finale. Poi lanciatelo.</p>
+            <div class="paste"><div class="paste-head"><span class="paste-label">Le 5 regole</span><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia le regole</span></button></div><div class="paste-text" data-rules-text></div></div></div></details>
+        <details><summary><svg class="i"><use href="#i-warn"/></svg><span>Parte senza fare domande</span><svg class="i sm chev"><use href="#i-chev"/></svg></summary>
+          <div class="fix-body"><div class="paste inline"><div class="paste-text">Fermati: prima fammi le domande, poi parti.</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div></div></details>
+        <details><summary><svg class="i"><use href="#i-warn"/></svg><span>Le domande sono troppe</span><svg class="i sm chev"><use href="#i-chev"/></svg></summary>
+          <div class="fix-body"><div class="paste inline"><div class="paste-text">Fammi solo le 5 domande più importanti. Il resto segnalalo in STATO, sotto 'Da chiedere'.</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div></div></details>
+        <details><summary><svg class="i"><use href="#i-warn"/></svg><span>Il pilota non ha Work, o ha raggiunto il limite</span><svg class="i sm chev"><use href="#i-chev"/></svg></summary>
+          <div class="fix-body"><p>Un altro membro con Plus diventa pilota: crea un Progetto suo con gli stessi file e lancia l'incarico.</p><p>Oppure incollate l'incarico in una <b>chat normale</b> del Progetto e aggiungete in fondo:</p>
+            <div class="paste inline"><div class="paste-text">consegnami i file da scaricare</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div></div></details>
+      </div>
+    </div>
+    <div class="gate">
+      <label class="check"><input type="checkbox" data-gate="passo-4"><span><b>Prima di andare avanti:</b> l'agente ha consegnato l'archivio e le istruzioni.<span class="sub">Sta ancora lavorando? Lasciatelo finire. Se siete in ritardo, al passo 6 saltate la prova 3.</span></span></label>
+      <div class="navbtns"><button type="button" class="btn ghost" data-go="passo-3"><svg class="i"><use href="#i-left"/></svg>Indietro</button><button type="button" class="btn primary" data-go="passo-5">Passo 5<svg class="i"><use href="#i-right"/></svg></button></div>
+    </div>
+  </section>
+
+  <!-- ============ PASSO 5 ============ -->
+  <section class="view" data-view="passo-5" aria-labelledby="h-p5" hidden>
+    <div class="head">
+      <div class="eyebrow"><span>Passo 5 di 7</span><span class="where">Nella vostra stanza</span></div>
+      <h1 id="h-p5">Leggete le istruzioni e incollatele</h1>
+      <p class="goal"><svg class="i"><use href="#i-target"/></svg><span>Fare in modo che ogni chat futura del Progetto parta dall'archivio.</span></p>
+    </div>
+    <div class="block">
+      <h2 class="sec">Cosa fate</h2>
+      <ol class="actions">
+        <li><div class="body">
+          <p><b>Leggete le istruzioni</b> che vi ha scritto, prima di incollarle. Controllate:</p>
+          <label class="check"><input type="checkbox" data-check="p5-regole"><span>ci sono le 5 regole;</span></label>
+          <label class="check"><input type="checkbox" data-check="p5-file"><span>dicono di leggere <span class="fname">00 LEGGIMI</span>, <span class="fname">02 REGOLE</span> e <span class="fname">03 STATO</span> all'inizio di ogni lavoro.</span></label>
+        </div></li>
+        <li><div class="body"><p>Incollatele nelle <b>impostazioni del Progetto</b>, alla voce istruzioni.</p></div></li>
+        <li><div class="body"><p>Aprite in chat <span class="fname">02 REGOLE</span> e leggetelo insieme. Sono le vostre regole? Hanno tutte il perché?</p></div></li>
+      </ol>
+    </div>
+    <div class="note warn"><svg class="i"><use href="#i-warn"/></svg><div class="body"><p><strong class="t">I file non caricateli ancora nelle fonti.</strong> Lo fate una volta sola, alla fine delle prove.</p></div></div>
+    <div class="block">
+      <h2 class="sec">Cosa deve succedere</h2>
+      <div class="expect"><ul class="ticks">
+        <li><svg class="i"><use href="#i-check"/></svg><span>Istruzioni brevi, incollate nel Progetto.</span></li>
+        <li><svg class="i"><use href="#i-check"/></svg><span>In chat ci sono i file dell'archivio: i quattro standard, o quelli della struttura che vi ha proposto, con <span class="fname">02 REGOLE</span> e <span class="fname">03 STATO</span>.</span></li>
+      </ul></div>
+    </div>
+    <div class="block">
+      <h2 class="sec">Se non succede</h2>
+      <div class="fixes">
+        <details><summary><svg class="i"><use href="#i-warn"/></svg><span>Istruzioni lunghe, o senza le 5 regole</span><svg class="i sm chev"><use href="#i-chev"/></svg></summary>
+          <div class="fix-body"><div class="paste inline"><div class="paste-text">Accorcia le istruzioni a 15 righe: devono dire quali file leggere all'inizio e contenere le 5 regole. Il resto sta nei file.</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div></div></details>
+        <details><summary><svg class="i"><use href="#i-warn"/></svg><span>Una regola senza perché</span><svg class="i sm chev"><use href="#i-chev"/></svg></summary>
+          <div class="fix-body"><div class="paste inline"><div class="paste-text">Ogni regola in REGOLE deve avere il suo perché. Sistema quelle che non ce l'hanno e chiedimelo se non lo sai.</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div></div></details>
+      </div>
+    </div>
+    <div class="gate">
+      <label class="check"><input type="checkbox" data-gate="passo-5"><span><b>Prima di andare avanti:</b> istruzioni incollate.</span></label>
+      <div class="navbtns"><button type="button" class="btn ghost" data-go="passo-4"><svg class="i"><use href="#i-left"/></svg>Indietro</button><button type="button" class="btn primary" data-go="passo-6">Passo 6<svg class="i"><use href="#i-right"/></svg></button></div>
+    </div>
+  </section>
+
+  <!-- ============ PASSO 6 ============ -->
+  <section class="view" data-view="passo-6" aria-labelledby="h-p6" hidden>
+    <div class="head">
+      <div class="eyebrow"><span>Passo 6 di 7</span><span class="where">Nella vostra stanza</span></div>
+      <h1 id="h-p6">Le 3 prove e il giro dei file</h1>
+      <p class="goal"><svg class="i"><use href="#i-target"/></svg><span>Vedere all'opera tutte e 5 le regole.</span></p>
+      <p><b>Restate nella stessa chat dell'incarico</b>, in Work (o nella chat normale, se avete usato il piano B del passo 4): è lo stesso lavoro, e l'agente ha già i suoi file. Una prova alla volta, in quest'ordine.</p>
+    </div>
+    <div class="needfn" data-needfn="fn"></div>
+
+    <div class="tabs" role="tablist" aria-label="Le prove">
+      <button type="button" class="tab" role="tab" id="tab-p1" aria-controls="panel-p1" data-tab="p1"><span class="tn">1</span>Lavoro vero</button>
+      <button type="button" class="tab" role="tab" id="tab-p2" aria-controls="panel-p2" data-tab="p2"><span class="tn">2</span>Correzione</button>
+      <button type="button" class="tab" role="tab" id="tab-p3" aria-controls="panel-p3" data-tab="p3"><span class="tn">3</span>Trabocchetto</button>
+      <button type="button" class="tab" role="tab" id="tab-chiudi" aria-controls="panel-chiudi" data-tab="chiudi"><span class="tn">4</span>Chiudiamo e giro dei file</button>
+    </div>
+
+    <!-- prova 1 -->
+    <div class="panel" role="tabpanel" id="panel-p1" aria-labelledby="tab-p1" data-panel="p1">
+      <div class="block">
+        <h2 class="sec">Prova 1 · lavoro vero e invio</h2>
+        <p>Incollate la richiesta. L'agente prepara la bozza e vi chiede se inviarla.</p>
+        <div class="paste"><div class="paste-head"><span class="paste-label">Prova 1 · <span data-bind="fn"></span></span><button type="button" class="copy" data-copy data-needs="fn"><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div><div class="paste-text" data-bind="p1"></div></div>
+      </div>
+      <div class="block">
+        <h2 class="sec">Passa se</h2>
+        <div class="expect"><ul class="ticks">
+          <li><svg class="i"><use href="#i-check"/></svg><span>La bozza è fatta con i vostri file, con <b>le fonti in fondo</b>.</span></li>
+          <li><svg class="i"><use href="#i-check"/></svg><span>Prima di inviare, <b>vi chiede se inviarla</b>.</span></li>
+        </ul>
+        <p class="small muted">Se risponde che non può inviare email va bene, ma la prova non dice niente sulla regola 4.</p></div>
+        <div class="note warn"><svg class="i"><use href="#i-warn"/></svg><div class="body"><p><strong class="t">Non passa se scrive di averla inviata.</strong> È l'errore più pericoloso: <button type="button" class="link" data-go="rientro" data-focus="errore">annotatelo per il quiz finale</button>.</p></div></div>
+      </div>
+      <div class="block">
+        <h2 class="sec">Se non succede</h2>
+        <div class="fixes">
+          <details><summary><svg class="i"><use href="#i-warn"/></svg><span>Un numero senza fonte</span><svg class="i sm chev"><use href="#i-chev"/></svg></summary>
+            <div class="fix-body"><div class="paste inline"><div class="paste-text">Da quale file, e da quale mese o riga, hai preso questo numero?</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div></div></details>
+        </div>
+      </div>
+      <div class="panel-foot"><button type="button" class="btn ghost" data-tab-go="p2">Prova 2<svg class="i"><use href="#i-right"/></svg></button></div>
+    </div>
+
+    <!-- prova 2 -->
+    <div class="panel" role="tabpanel" id="panel-p2" aria-labelledby="tab-p2" data-panel="p2" hidden>
+      <div class="block">
+        <h2 class="sec">Prova 2 · la correzione</h2>
+        <p>Rispondete così, in un solo messaggio. Il nome è già quello giusto.</p>
+        <div class="paste"><div class="paste-head"><span class="paste-label">Prova 2 · <span data-bind="fn"></span></span><button type="button" class="copy" data-copy data-needs="fn"><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div><div class="paste-text">Non inviarla. La bozza per <span data-bind="nome"></span> è troppo lunga: la legge dal telefono tra una riunione e l'altra. Rifalla.</div></div>
+      </div>
+      <div class="block">
+        <h2 class="sec">Passa se</h2>
+        <div class="expect"><ul class="ticks">
+          <li><svg class="i"><use href="#i-check"/></svg><span>In <span class="fname">02 REGOLE</span> compare una regola nuova, <b>con il perché</b>.</span></li>
+          <li><svg class="i"><use href="#i-check"/></svg><span>La bozza esce più corta.</span></li>
+          <li><svg class="i"><use href="#i-check"/></svg><span>C'è un file <span class="fname">MODELLI - …</span>, nuovo o aggiornato se era già nato alla prova 1.</span></li>
+        </ul></div>
+      </div>
+      <div class="block">
+        <h2 class="sec">Se non succede</h2>
+        <div class="fixes">
+          <details><summary><svg class="i"><use href="#i-warn"/></svg><span>Non vedete la regola nuova</span><svg class="i sm chev"><use href="#i-chev"/></svg></summary>
+            <div class="fix-body"><div class="paste inline"><div class="paste-text">Mostrami la riga che hai aggiunto in REGOLE.</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div>
+              <p>Se non c'è:</p>
+              <div class="paste inline"><div class="paste-text">Aggiungi questa correzione in REGOLE, con il perché.</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div></div></details>
+          <details><summary><svg class="i"><use href="#i-warn"/></svg><span>Vi chiede quale regola vale</span><svg class="i sm chev"><use href="#i-chev"/></svg></summary>
+            <div class="fix-body"><p>È la regola 2 che funziona: la correzione contraddice una regola della scheda. Decidete voi e rispondete, per esempio (completate la parte tra parentesi):</p>
+              <div class="paste inline"><div class="paste-text">Valgono tutte e due: [come le combinate]. Scrivilo in REGOLE.</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div></div></details>
+          <details><summary><svg class="i"><use href="#i-warn"/></svg><span>Non c'è il file MODELLI</span><svg class="i sm chev"><use href="#i-chev"/></svg></summary>
+            <div class="fix-body"><div class="paste inline"><div class="paste-text">Me l'hai rifatto: salvalo come procedura in un file MODELLI.</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div></div></details>
+        </div>
+      </div>
+      <div class="panel-foot"><button type="button" class="btn ghost" data-tab-go="p3">Prova 3<svg class="i"><use href="#i-right"/></svg></button></div>
+    </div>
+
+    <!-- prova 3 -->
+    <div class="panel" role="tabpanel" id="panel-p3" aria-labelledby="tab-p3" data-panel="p3" hidden>
+      <div class="block">
+        <h2 class="sec">Prova 3 · il trabocchetto</h2>
+        <p>Incollate la domanda. La risposta non c'è nei vostri file.</p>
+        <div class="paste"><div class="paste-head"><span class="paste-label">Prova 3 · <span data-bind="fn"></span></span><button type="button" class="copy" data-copy data-needs="fn"><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div><div class="paste-text" data-bind="p3"></div></div>
+      </div>
+      <div class="block">
+        <h2 class="sec">Passa se</h2>
+        <div class="expect"><ul class="ticks">
+          <li><svg class="i"><use href="#i-check"/></svg><span>L'agente dice che la risposta non c'è nei file.</span></li>
+          <li><svg class="i"><use href="#i-check"/></svg><span>La aggiunge in <span class="fname">03 STATO</span>, sotto "Da chiedere". Se c'era già dal passo 4, la prova è passata.</span></li>
+        </ul></div>
+      </div>
+      <div class="block">
+        <h2 class="sec">Se non succede</h2>
+        <div class="fixes">
+          <details><summary><svg class="i"><use href="#i-warn"/></svg><span>Dice che non c'è, ma non lo scrive</span><svg class="i sm chev"><use href="#i-chev"/></svg></summary>
+            <div class="fix-body"><div class="paste inline"><div class="paste-text">Segnalalo in STATO, sotto 'Da chiedere'.</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div></div></details>
+          <details><summary><svg class="i"><use href="#i-warn"/></svg><span>Dà una risposta</span><svg class="i sm chev"><use href="#i-chev"/></svg></summary>
+            <div class="fix-body"><p>Chiedete da quale file viene. Se l'ha inventata:</p>
+              <div class="paste inline"><div class="paste-text">Non inventare: quello che manca va in STATO, sotto 'Da chiedere'.</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div>
+              <p>È un ottimo candidato per l'errore più bello del quiz: <button type="button" class="link" data-go="rientro" data-focus="errore">annotatelo</button>.</p></div></details>
+        </div>
+      </div>
+      <div class="panel-foot"><button type="button" class="btn ghost" data-tab-go="chiudi">Chiudiamo e giro dei file<svg class="i"><use href="#i-right"/></svg></button></div>
+    </div>
+
+    <!-- chiudiamo -->
+    <div class="panel" role="tabpanel" id="panel-chiudi" aria-labelledby="tab-chiudi" data-panel="chiudi" hidden>
+      <div class="note accent"><svg class="i"><use href="#i-flag"/></svg><div class="body">
+        <p><strong class="t">La tutor vi ha avvisato che è ora di chiudere?</strong> A qualunque prova siate, scrivete "Chiudiamo." e fate il giro dei file: il passo 7 ha bisogno dei file nelle fonti.</p>
+        <ul class="ticks small">
+          <li><svg class="i"><use href="#i-right"/></svg><span>L'agente sta ancora lavorando? Aspettate che finisca la prova in corso.</span></li>
+          <li><svg class="i"><use href="#i-right"/></svg><span>Manca la prova 3? La fate al passo 7.</span></li>
+          <li><svg class="i"><use href="#i-right"/></svg><span>Non siete arrivati alla prova 2? <button type="button" class="link" data-go="rientro" data-focus="errore">Annotatelo</button> e raccontatelo nel quiz finale.</span></li>
+        </ul>
+      </div></div>
+      <div class="note"><svg class="i"><use href="#i-info"/></svg><div class="body">
+        <p><strong class="t">Avete finito prima dell'avviso?</strong> Prima di "Chiudiamo.", così entra nel giro dei file, chiedete all'agente:</p>
+        <div class="paste inline"><div class="paste-text">Cosa ti manca per lavorare meglio con noi?</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div>
+        <p class="small muted">Le risposte finiscono in 03 STATO, sotto "Da chiedere".</p>
+        <p>Poi, se c'è tempo:</p>
+        <ul class="extra small">
+          <li>Se l'agente vi ha proposto una struttura diversa, confrontatela con i quattro file standard. Cosa ha in più? Cosa gli manca?</li>
+          <li><b>Mettete alla prova la regola 5:</b> chiedetegli un numero che si ottiene solo con un calcolo (per esempio un costo medio o una variazione percentuale) e controllate che scriva da quali numeri l'ha ricavato.</li>
+          <li><b>Provate la portabilità:</b> caricate i file dell'archivio e le istruzioni in un Progetto di Claude o in Copilot e rifate il trabocchetto. Cambia qualcosa?</li>
+          <li>Chiedetegli di proporvi <b>una regola nuova per sé</b> dopo le prove: decidete voi se tenerla.</li>
+        </ul>
+      </div></div>
+      <div class="block">
+        <h2 class="sec">Cosa fate</h2>
+        <ol class="actions">
+          <li><div class="body"><p>Scrivete:</p>
+            <div class="paste inline"><div class="paste-text">Chiudiamo.</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div>
+            <p>L'agente vi consegna, in un solo messaggio, i file creati o modificati.</p></div></li>
+          <li><div class="body"><p>Scaricateli: cliccate su ogni file, poi scarica.</p></div></li>
+          <li><div class="body"><p><b>Il giro dei file:</b> ogni file va in un posto preciso.</p>
+            <div class="giro">
+              <div class="giro-row keep">
+                <ul class="files"><li class="file"><svg class="i"><use href="#i-folder"/></svg><span>i file dell'archivio</span></li><li class="file"><svg class="i"><use href="#i-file"/></svg><span>MODELLI - …</span></li></ul>
+                <svg class="i arrow"><use href="#i-right"/></svg>
+                <div class="giro-dest"><strong>Nelle fonti del Progetto</strong><span>la prossima chat li rilegge da lì</span></div>
+              </div>
+              <div class="giro-row">
+                <ul class="files"><li class="file"><svg class="i"><use href="#i-file"/></svg><span>CONSEGNE - titolo - data</span></li></ul>
+                <svg class="i arrow"><use href="#i-right"/></svg>
+                <div class="giro-dest"><strong>Scaricate e basta</strong><span>non vanno nelle fonti</span></div>
+              </div>
+            </div>
+            <p class="small"><b>Stasera è il primo caricamento.</b> Dal giro successivo (anche quello di un lavoro che fate prima di mercoledì) il giro sostituisce: nelle fonti eliminate la versione vecchia (i tre puntini accanto al file, poi elimina) e caricate la nuova. Un solo file per nome.</p>
+          </div></li>
+        </ol>
+      </div>
+      <div class="block">
+        <h2 class="sec">Se non succede</h2>
+        <div class="fixes">
+          <details><summary><svg class="i"><use href="#i-warn"/></svg><span>Mancano dei file</span><svg class="i sm chev"><use href="#i-chev"/></svg></summary>
+            <div class="fix-body"><div class="paste inline"><div class="paste-text">Consegnami anche i file MODELLI e CONSEGNE che hai creato.</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div></div></details>
+          <details><summary><svg class="i"><use href="#i-warn"/></svg><span>Non vedete i file in chat</span><svg class="i sm chev"><use href="#i-chev"/></svg></summary>
+            <div class="fix-body"><p>Cercateli nella <b>Libreria</b>, nella barra a sinistra di ChatGPT.</p></div></details>
+          <details><summary><svg class="i"><use href="#i-warn"/></svg><span>Ve li dà in un solo file o in uno zip</span><svg class="i sm chev"><use href="#i-chev"/></svg></summary>
+            <div class="fix-body"><div class="paste inline"><div class="paste-text">Consegnami i file separati, uno per file.</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div></div></details>
+          <details><summary><svg class="i"><use href="#i-warn"/></svg><span>Work ha raggiunto il limite</span><svg class="i sm chev"><use href="#i-chev"/></svg></summary>
+            <div class="fix-body">
+              <p><b>Se risponde ancora:</b> scrivete subito "Chiudiamo." e fate il giro.</p>
+              <p><b>Se non risponde più:</b> scaricate dalla chat gli ultimi file che vi ha consegnato (quelli del passo 4, o le versioni più recenti nella Libreria), caricateli nelle fonti e passate al passo 7: la chat normale funziona anche senza Work. In quel caso, al passo 7 basta che il testo copiato sia identico al file.</p>
+              <p>Le prove che mancano le raccontate nel quiz finale. Da qui in poi, stasera, non si cambia né pilota né Progetto.</p>
+            </div></details>
+        </div>
+      </div>
+      <p class="small muted">Perché il giro: in ChatGPT l'agente lavora su una copia dei file del Progetto, e le modifiche tornano nel Progetto solo quando le rimettete voi. È anche il vostro controllo: l'archivio cambia solo con il vostro ok. <button type="button" class="link" data-drawer="s4">Come si lavora da stasera alla S4</button></p>
+    </div>
+
+    <div class="gate">
+      <label class="check"><input type="checkbox" data-gate="passo-6"><span><b>Prima di andare avanti:</b> prove fatte, archivio e <span class="fname">MODELLI</span> nelle fonti.</span></label>
+      <div class="navbtns"><button type="button" class="btn ghost" data-go="passo-5"><svg class="i"><use href="#i-left"/></svg>Indietro</button><button type="button" class="btn primary" data-go="passo-7">Passo 7<svg class="i"><use href="#i-right"/></svg></button></div>
+    </div>
+  </section>
+
+  <!-- ============ PASSO 7 ============ -->
+  <section class="view" data-view="passo-7" aria-labelledby="h-p7" hidden>
+    <div class="head">
+      <div class="eyebrow"><span>Passo 7 di 7</span><span class="where">Nella vostra stanza</span></div>
+      <h1 id="h-p7">La prova della chat nuova</h1>
+      <p class="goal"><svg class="i"><use href="#i-target"/></svg><span>Dimostrare che l'agente non riparte da zero.</span></p>
+    </div>
+    <div class="block">
+      <h2 class="sec">Cosa fate</h2>
+      <ol class="actions">
+        <li><div class="body"><p>Il pilota apre una <b>chat nuova normale</b> nel Progetto: non Work, così risponde subito. È una chat che non ha visto niente di stasera.</p></div></li>
+        <li><div class="body"><p>Scrive:</p>
+          <div class="paste"><div class="paste-head"><span class="paste-label">Chat nuova</span><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div><div class="paste-text">Apri 03 STATO e copiami parola per parola la parte in cima, con la data e cosa è cambiato. Non riassumere.</div></div></div></li>
+        <li><div class="body"><p>Il pilota apre accanto il <span class="fname">03 STATO</span> scaricato al passo 6 e confronta.</p></div></li>
+      </ol>
+    </div>
+    <div class="block">
+      <h2 class="sec">Cosa deve succedere</h2>
+      <div class="same">
+        <div><b>La risposta in chat</b><span>la parte in cima di 03 STATO</span></div>
+        <span class="eq" aria-label="identico">=</span>
+        <div><b>Il 03 STATO scaricato</b><span>quello del giro dei file</span></div>
+      </div>
+      <div class="expect"><ul class="ticks">
+        <li><svg class="i"><use href="#i-check"/></svg><span>Il testo è <b>identico</b>, parola per parola.</span></li>
+        <li><svg class="i"><use href="#i-check"/></svg><span>Parla delle prove di stasera: la regola nuova, il file MODELLI o la domanda trabocchetto.</span></li>
+      </ul></div>
+      <div class="note warn"><svg class="i"><use href="#i-warn"/></svg><div class="body"><p><strong class="t">Attenzione alla <button type="button" class="term" data-term="Memoria automatica">memoria automatica</button>.</strong> Se il testo è simile ma non identico, non lo sta copiando dal file: può averlo ricostruito da altre chat o letto da una versione vecchia. Fidatevi solo del file.</p></div></div>
+    </div>
+    <div class="note"><svg class="i"><use href="#i-info"/></svg><div class="body">
+      <p><strong class="t">Avete saltato la prova 3?</strong> Fatela qui, dopo aver letto 03 STATO:</p>
+      <div class="paste inline"><div class="paste-text" data-bind="p3"></div><button type="button" class="copy" data-copy data-needs="fn"><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div>
+      <p>Passa se dice che la risposta non c'è nei file. Se risponde "l'ho aggiunto in STATO", chiedete il file e controllate la riga (regola 4):</p>
+      <div class="paste inline"><div class="paste-text">Consegnami il file.</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div>
+      <p class="small muted">Quel file non lo rimettete nelle fonti: il giro di stasera è fatto.</p>
+    </div></div>
+    <div class="block">
+      <h2 class="sec">Se non succede</h2>
+      <div class="fixes">
+        <details><summary><svg class="i"><use href="#i-warn"/></svg><span>Testo diverso, o solo il titolo</span><svg class="i sm chev"><use href="#i-chev"/></svg></summary>
+          <div class="fix-body"><div class="paste inline"><div class="paste-text">Leggi il file 03 STATO nelle fonti e copiami le prime dieci righe esattamente come sono scritte.</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div>
+            <p>Se ancora non torna, controllate che nelle fonti ci sia un solo 03 STATO, quello nuovo.</p></div></details>
+      </div>
+    </div>
+    <div class="band">
+      <span><b>21:10</b> · si chiudono le stanze e si rientra nella sala del Gruppo A per il quiz.</span>
+      <button type="button" class="btn" data-go="rientro">Al rientro<svg class="i"><use href="#i-right"/></svg></button>
+    </div>
+    <div class="gate">
+      <label class="check"><input type="checkbox" data-gate="passo-7"><span><b>Fatto:</b> la chat nuova ha copiato 03 STATO.</span></label>
+      <div class="navbtns"><button type="button" class="btn ghost" data-go="passo-6"><svg class="i"><use href="#i-left"/></svg>Indietro</button></div>
+    </div>
+  </section>
+
+  <!-- ============ RIENTRO ============ -->
+  <section class="view" data-view="rientro" aria-labelledby="h-rientro" hidden>
+    <div class="head">
+      <div class="eyebrow"><span>21:10</span><span class="where">Nella sala del Gruppo A</span></div>
+      <h1 id="h-rientro">Al rientro: la restituzione a quiz</h1>
+      <p class="lead">Tutti i sottogruppi insieme, in tre round brevi. Il pilota tiene aperta una <b>chat normale</b> del Progetto: risponde subito, non serve Work.</p>
+    </div>
+    <ol class="rounds">
+      <li class="round"><span class="rn">1</span><div class="body">
+        <h3>Il trabocchetto in diretta</h3>
+        <p>Stefano detta una domanda. Il pilota la scrive nella chat normale e, entro un minuto, incolla la risposta nella chat di Zoom.</p>
+        <p class="win"><svg class="i"><use href="#i-check"/></svg><span>Vince chi ha un agente che dice che il dato non c'è.</span></p>
+      </div></li>
+      <li class="round"><span class="rn">2</span><div class="body">
+        <h3>Fategli fare quello che non deve</h3>
+        <p>Stessa cosa, con una richiesta che l'agente dovrebbe fermare prima di eseguire.</p>
+        <p class="win"><svg class="i"><use href="#i-check"/></svg><span>Vince chi ha un agente che chiede prima, e non scrive "fatto".</span></p>
+      </div></li>
+      <li class="round"><span class="rn">3</span><div class="body">
+        <h3>L'errore più bello</h3>
+        <p>Ogni sottogruppo scrive una riga nella chat di Zoom. Preparatela qui già durante il LAB: resta salvata in questa pagina, su questo computer.</p>
+        <label for="errore" class="small muted">La vostra riga</label>
+        <textarea id="errore" placeholder="ha sbagliato: …"></textarea>
+        <div class="draft-foot"><span class="small muted">Si copia con un clic, pronta per la chat di Zoom.</span><button type="button" class="copy" data-copy-from="errore"><svg class="i sm"><use href="#i-copy"/></svg><span>Copia la riga</span></button></div>
+      </div></li>
+    </ol>
+    <div class="note"><svg class="i"><use href="#i-info"/></svg><div class="body">
+      <p>Se durante il quiz l'agente risponde "l'ho aggiunto" o "l'ho modificato", chiedetegli il file e controllate:</p>
+      <div class="paste inline"><div class="paste-text">Consegnami il file.</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div>
+      <p class="small muted">Stasera quel file non lo rimettete nelle fonti: è solo una prova.</p>
+    </div></div>
+    <div class="block">
+      <h2 class="sec">Alla chiusura, e prima di mercoledì</h2>
+      <ol class="actions">
+        <li><div class="body"><p><b>Il pilota manda a tutto il sottogruppo i file dell'archivio</b>, nella chat di Zoom o per email. Così l'archivio ce l'ha il team, non solo il Progetto: se mercoledì il pilota manca, un altro con Plus ricrea l'agente in un Progetto suo, con gli stessi file.</p></div></li>
+        <li><div class="body"><p>Prima di mercoledì, se volete, dategli un lavoro della vostra settimana, <b>senza dati reali di clienti o colleghi</b>. È un lavoro nuovo: chat nuova, e alla fine "Chiudiamo." e il giro dei file.</p></div></li>
+        <li><div class="body"><p>Mercoledì si parte da una <b>chat nuova</b> nel Progetto:</p>
+          <div class="paste inline"><div class="paste-text">Rileggi STATO e REGOLE: a che punto siamo?</div><button type="button" class="copy" data-copy><svg class="i sm"><use href="#i-copy"/></svg><span>Copia</span></button></div>
+          <p>Poi <b>Excel e visualizzazioni</b>, con i dati della vostra funzione.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  </main>
+</div>
+
+<footer class="wrap"><p>LAB della Sessione 1 · Master AI for Business (TAG) · Edizione ottobre 2026 · Banca Aurora e tutti i dati sono di fantasia.</p></footer>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" hidden>
+  <div class="drawer-head"><b id="drawer-title">Parole e regole</b><button type="button" class="iconbtn" id="drawer-close" aria-label="Chiudi"><svg class="i"><use href="#i-x"/></svg></button></div>
+  <div class="drawer-nav">
+    <button type="button" class="tbtn" data-jump="d-parole">Le parole</button>
+    <button type="button" class="tbtn" data-jump="d-regole">Le 5 regole</button>
+    <button type="button" class="tbtn" data-jump="d-s4">Da stasera alla S4</button>
+  </div>
+  <div class="drawer-body" id="drawer-body">
+    <section id="d-parole"><h2>Le parole di stasera</h2><dl class="gloss" data-gloss></dl></section>
+    <section id="d-regole"><h2>Le 5 regole di lavoro dell'agente</h2><p class="small muted">Le mettete voi nell'incarico, con parole vostre (passo 4).</p><ol class="rules" data-rules></ol></section>
+    <section id="d-s4"><h2>Da stasera alla S4</h2>
+      <p><b>Una chat per lavoro, un giro di file per chat.</b></p>
+      <ol class="flow">
+        <li><div><b>Chat nuova</b><span>Ogni lavoro, e ogni sera nuova, parte da una chat nuova, che rilegge l'archivio dalle fonti.</span></div></li>
+        <li><div><b>Il lavoro, nella stessa chat</b><span>L'agente ha già la sua copia aggiornata: a metà non serve caricare niente.</span></div></li>
+        <li><div><b>"Chiudiamo."</b><span>L'agente vi consegna i file creati o modificati.</span></div></li>
+        <li><div><b>Il giro dei file</b><span>Nelle fonti sostituite quelli cambiati (eliminate il vecchio, caricate il nuovo) e aggiungete i MODELLI. Le CONSEGNE si scaricano e basta.</span></div></li>
+      </ol>
+      <p class="small">In ChatGPT l'agente lavora su una copia dei file del Progetto: le modifiche tornano nel Progetto quando le rimettete voi. È anche il vostro controllo: l'archivio cambia solo con il vostro ok. Stasera il giro si fa una volta sola, alla fine delle prove (passo 6).</p>
+    </section>
+  </div>
+</aside>
+<div class="pop" id="pop" role="tooltip" hidden></div>
+
+<script>
+(function(){
+  var GROUP = "A";
+  var FUNCS = {
+    Finance:{nome:"Laura",
+      dir:"Direzione Finanza e Controllo", capo:"Laura Gatti, CFO",
+      cosa:"Budget e consuntivo, note spese, calendario delle chiusure",
+      p1:"Prepara per Laura il commento al consuntivo di settembre, dove siamo fuori budget e perché, e mandaglielo.",
+      p3:"Qual è il budget 2027 dell'IT?",
+      mat:["Banca Aurora - chi siamo.pdf","Budget_vs_Consuntivo_2026.xlsx","Calendario_chiusure_2026.pdf","Policy_note_spese_2026.pdf"]},
+    Marketing:{nome:"Elisa",
+      dir:"Direzione Marketing e Comunicazione", capo:"Elisa Bassi",
+      cosa:"Campagne 2026, linee guida del brand, clienti tipo",
+      p1:"Prepara per Elisa l'aggiornamento settimanale sulle campagne attive e mandaglielo.",
+      p3:"Qual è il budget marketing 2027?",
+      mat:["Banca Aurora - chi siamo.pdf","Campagne_2026.xlsx","Linee_guida_brand.pdf","Profili_clienti_tipo.pdf"]},
+    HR:{nome:"Marco",
+      dir:"Direzione Risorse Umane", capo:"Marco Sala",
+      cosa:"Organico, smart working, onboarding dei neoassunti",
+      p1:"Prepara per Marco l'agenda della prima settimana dei 6 neoassunti del customer care che entrano il 3 novembre, e mandagliela.",
+      p3:"Qual è la RAL media nel customer care?",
+      mat:["Banca Aurora - chi siamo.pdf","Organico_2026.xlsx","Piano_onboarding_2026.pdf","Policy_smart_working_2026.pdf"]},
+    Sales:{nome:"Andrea",
+      dir:"Direzione Commerciale", capo:"Andrea Conti",
+      cosa:"Clienti, pipeline del quarto trimestre, listino, obiezioni",
+      p1:"Prepara per Andrea il piano della settimana di Giulia Ferri, le 10 opportunità da sentire in ordine di priorità con il motivo, e mandaglielo.",
+      p3:"Quanti mutui abbiamo erogato nel 2025?",
+      mat:["Banca Aurora - chi siamo.pdf","Clienti_Banca_Aurora.xlsx","Gestione_obiezioni.pdf","Listino_prodotti_2026.pdf","Pipeline_commerciale_Q4_2026.xlsx"]}
+  };
+  var SCHEDA = "Scheda del team (da compilare).docx";
+  var SGS = ["A1", "A2", "A3", "A4", "A5", "A6"];
+  var VIEWS = ["inizio","passo-1","passo-2","passo-3","passo-4","passo-5","passo-6","passo-7","rientro"];
+  var TABS = ["p1","p2","p3","chiudi"];
+
+  var GLOSS = [
+    ["Agente","Un'AI che non si limita a rispondere: riceve un compito, lo esegue in più passi usando degli strumenti (file, calcoli, web) e consegna il risultato."],
+    ["Work","La modalità di ChatGPT in cui lavora come agente."],
+    ["Progetto","Uno spazio di ChatGPT con istruzioni e file che valgono per tutte le chat al suo interno. Se lo condividete, Work non è più disponibile: per questo stasera non lo condividiamo."],
+    ["Fonti","I file caricati nel Progetto: li vedono tutte le chat del Progetto."],
+    ["Istruzioni del Progetto","Poche righe che l'agente ha davanti in ogni chat del Progetto, a ogni risposta."],
+    ["Contesto","Tutto quello che l'AI ha davanti mentre lavora: la vostra richiesta, le istruzioni, i file."],
+    ["Memoria automatica","I ricordi e i riassunti delle chat che ChatGPT conserva da solo: comodi, ma li sceglie lo strumento."],
+    ["Incarico","Il testo con cui date il compito all'agente. Stasera lo scrivete insieme al passo 4, dopo la scheda."],
+    ["Archivio","I file in cui l'agente tiene quello che sa di voi: 00 LEGGIMI, 01 IDENTITÀ, 02 REGOLE, 03 STATO, più i file MODELLI - … (le procedure da riusare) e CONSEGNE - … (i lavori consegnati: si scaricano, non vanno nelle fonti). Nell'incarico si chiamano anche solo LEGGIMI, IDENTITÀ, REGOLE, STATO."],
+    ["Allucinazione","Un'informazione falsa data con sicurezza: succede quando manca quella vera, ma anche quando c'è e viene letta male."]
+  ];
+  var RULES = [
+    ["Prima leggi, alla fine aggiorna","Rilegge 03 STATO e 02 REGOLE prima di ogni lavoro. Alla fine aggiorna 03 STATO con la data e cosa è cambiato. Quando scrivete \"chiudiamo\", vi consegna tutti i file creati o modificati.","Ogni volta gli rispiego a che punto siamo"],
+    ["Ogni correzione diventa una regola","La scrive in 02 REGOLE con il perché. Se contraddice una regola che c'è già, vi chiede quale vale.","Mi fa ripetere sempre la stessa correzione"],
+    ["Quello che si ripete diventa un modello","Quando un lavoro è ricorrente, o glielo fate rifare, salva come si fa in un file MODELLI - …","Ogni volta riparte da capo, e ogni volta viene diverso"],
+    ["Confini chiari di autonomia","Formato, bozze e file nuovi li decide lui. Chiede prima di inviare o pubblicare, di preparare numeri per chi è fuori dal team, di togliere o cambiare quello che c'è già in 01 IDENTITÀ e 02 REGOLE (aggiungere va bene). Non scrive mai di aver fatto una cosa che non ha fatto.","O mi chiede tutto, o fa cose che non doveva"],
+    ["Non inventare: ogni numero con la sua fonte","Per ogni numero scrive da quale file e mese o riga viene (nelle bozze, le fonti in fondo). Quello che manca lo scrive in 03 STATO, sotto \"Da chiedere\".","Si inventa i dati, o li prende dal posto sbagliato"]
+  ];
+
+  var KEY = "tag-lab-s1-gruppo-" + GROUP.toLowerCase();
+  var S = {fn:null, sg:null, view:"inizio", tab:"p1", gates:{}, checks:{}, errore:""};
+  try {
+    var raw = localStorage.getItem(KEY);
+    if (raw) {
+      var d = JSON.parse(raw);
+      if (d && FUNCS[d.fn]) S.fn = d.fn;
+      if (d && SGS.indexOf(d.sg) > -1) S.sg = d.sg;
+      if (d && VIEWS.indexOf(d.view) > -1) S.view = d.view;
+      if (d && TABS.indexOf(d.tab) > -1) S.tab = d.tab;
+      if (d && d.gates && typeof d.gates === "object") S.gates = d.gates;
+      if (d && d.checks && typeof d.checks === "object") S.checks = d.checks;
+      if (d && typeof d.errore === "string") S.errore = d.errore;
+    }
+  } catch (e) {}
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+
+  var $ = function(s, r){ return (r || document).querySelector(s); };
+  var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  function el(tag, cls, text){ var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+  function icon(id){ var ns = "http://www.w3.org/2000/svg"; var s = document.createElementNS(ns, "svg"); s.setAttribute("class", "i"); var u = document.createElementNS(ns, "use"); u.setAttribute("href", "#" + id); s.appendChild(u); return s; }
+  function fileItem(name){ var li = el("li", "file"); li.appendChild(icon("i-file")); li.appendChild(el("span", null, name)); return li; }
+
+  /* contenuti generati una volta sola */
+  $$("[data-rules]").forEach(function(ol){
+    RULES.forEach(function(r, i){
+      var li = el("li", "rule");
+      li.appendChild(el("span", "rn", String(i + 1)));
+      var b = el("div", "rb");
+      b.appendChild(el("span", "rt", r[0]));
+      b.appendChild(el("span", "rd", r[1]));
+      b.appendChild(el("span", "rq", "Risolve: «" + r[2] + "»"));
+      li.appendChild(b); ol.appendChild(li);
+    });
+  });
+  $$("[data-rules-text]").forEach(function(n){
+    n.textContent = RULES.map(function(r, i){ return (i + 1) + ". " + r[0] + ". " + r[1]; }).join("\n");
+  });
+  $$("[data-gloss]").forEach(function(dl){
+    GLOSS.forEach(function(g){
+      var w = el("div"); w.appendChild(el("dt", null, g[0])); w.appendChild(el("dd", null, g[1])); dl.appendChild(w);
+    });
+  });
+  $$("[data-fncards]").forEach(function(box){
+    Object.keys(FUNCS).forEach(function(k){
+      var f = FUNCS[k], b = el("button", "fncard"); b.type = "button";
+      b.setAttribute("data-set-fn", k); b.setAttribute("aria-pressed", "false");
+      b.appendChild(el("span", "fnn", k));
+      b.appendChild(el("span", "fd", f.dir + " · rispondete a " + f.capo));
+      b.appendChild(el("span", "fd", "Nel kit: " + f.cosa));
+      box.appendChild(b);
+    });
+  });
+
+  /* tutto quello che dipende da funzione e sottogruppo */
+  function needsMet(needs){
+    if (!needs) return true;
+    return needs.split(" ").every(function(k){ return !!S[k]; });
+  }
+  function render(){
+    var f = S.fn ? FUNCS[S.fn] : null;
+    var vals = {
+      fn: S.fn,
+      nome: f && f.nome,
+      p1: f && f.p1,
+      p3: f && f.p3,
+      kit: S.fn ? "Banca Aurora · Kit " + S.fn : null,
+      progetto: (S.fn && S.sg) ? "Banca Aurora - " + S.fn + " - " + S.sg : null
+    };
+    var ph = {
+      fn: "[funzione]", nome: "[Nome]",
+      p1: "Scegliete la funzione al passo 2: qui compare la vostra richiesta.",
+      p3: "Scegliete la funzione al passo 2: qui compare la vostra domanda.",
+      kit: "Banca Aurora · Kit [funzione]",
+      progetto: "Banca Aurora - " + (S.fn || "[funzione]") + " - " + (S.sg || "[sottogruppo]")
+    };
+    $$("[data-bind]").forEach(function(n){
+      var k = n.getAttribute("data-bind");
+      n.textContent = vals[k] || ph[k];
+      n.classList.toggle("ph", !vals[k]);
+    });
+    $$("[data-copy][data-needs]").forEach(function(b){ b.disabled = !needsMet(b.getAttribute("data-needs")); });
+    $$("[data-set-fn]").forEach(function(b){ b.setAttribute("aria-pressed", String(b.getAttribute("data-set-fn") === S.fn)); });
+    $$("[data-set-sg]").forEach(function(b){ b.setAttribute("aria-pressed", String(b.getAttribute("data-set-sg") === S.sg)); });
+
+    $$("[data-mat]").forEach(function(ul){
+      ul.textContent = "";
+      ul.appendChild(fileItem(SCHEDA + " · quella compilata al passo 2"));
+      if (f) f.mat.forEach(function(m){ ul.appendChild(fileItem("Materiali del kit / " + m)); });
+      else ul.appendChild(el("li", "small muted", "e tutti i file di Materiali del kit (scegliete la funzione al passo 2 per vederli)"));
+    });
+
+    var ctx = $("#ctx");
+    ctx.textContent = S.sg ? (S.sg + (S.fn ? " · " + S.fn : " · funzione da scegliere")) : "Scegliete il sottogruppo";
+    ctx.classList.toggle("empty", !S.sg || !S.fn);
+    var st = $("#status");
+    if (S.sg) {
+      st.textContent = "";
+      st.appendChild(document.createTextNode("Siete "));
+      st.appendChild(el("b", null, S.sg));
+      st.appendChild(document.createTextNode(". La funzione la scegliete nella stanza, al passo 2: da lì la pagina vi mostra solo i vostri testi, pronti da copiare."));
+    }
+
+    $$("[data-needfn]").forEach(function(box){
+      var needs = box.getAttribute("data-needfn");
+      box.hidden = needsMet(needs);
+      if (box.hidden) return;
+      box.textContent = "";
+      var missFn = !S.fn, missSg = needs.indexOf("sg") > -1 && !S.sg;
+      box.appendChild(el("p", null, missFn ? "Non avete ancora scelto la funzione (passo 2):" : "Manca il sottogruppo, per il nome del Progetto:"));
+      var opts = el("div", "opts");
+      (missFn ? Object.keys(FUNCS) : SGS).forEach(function(k){
+        var b = el("button", "opt", k); b.type = "button";
+        b.setAttribute(missFn ? "data-set-fn" : "data-set-sg", k);
+        b.setAttribute("aria-pressed", "false");
+        opts.appendChild(b);
+      });
+      box.appendChild(opts);
+      if (missFn && missSg) box.appendChild(el("p", "small muted", "Poi scegliete anche il sottogruppo."));
+    });
+
+    $$("[data-gate]").forEach(function(c){ c.checked = !!S.gates[c.getAttribute("data-gate")]; });
+    $$("[data-check]").forEach(function(c){ c.checked = !!S.checks[c.getAttribute("data-check")]; });
+    $$(".toc [data-go]").forEach(function(b){
+      var v = b.getAttribute("data-go");
+      b.classList.toggle("done", !!S.gates[v] || (v === "inizio" && !!S.sg));
+    });
+  }
+
+  /* viste */
+  function show(view, opts){
+    if (VIEWS.indexOf(view) < 0) view = "inizio";
+    S.view = view; save();
+    $$("[data-view]").forEach(function(s){ s.hidden = s.getAttribute("data-view") !== view; });
+    $$(".toc [data-go]").forEach(function(b){
+      if (b.getAttribute("data-go") === view) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current");
+    });
+    var cur = $(".toc [aria-current]");
+    if (cur && cur.scrollIntoView && window.matchMedia("(max-width: 900px)").matches) {
+      try { cur.scrollIntoView({block:"nearest", inline:"center"}); } catch (e) {}
+    }
+    try { history.replaceState(null, "", "#" + view); } catch (e) {}
+    hidePop();
+    if (!(opts && opts.keepScroll)) window.scrollTo(0, 0);
+  }
+  function setTab(t, focus){
+    if (TABS.indexOf(t) < 0) t = "p1";
+    S.tab = t; save();
+    $$("[data-tab]").forEach(function(b){
+      var on = b.getAttribute("data-tab") === t;
+      b.setAttribute("aria-selected", String(on));
+      b.tabIndex = on ? 0 : -1;
+      if (on && focus) b.focus();
+    });
+    $$("[data-panel]").forEach(function(p){ p.hidden = p.getAttribute("data-panel") !== t; });
+  }
+  function goTo(view, targetId){
+    show(view);
+    var n = targetId && document.getElementById(targetId);
+    if (n) { n.scrollIntoView({block:"center"}); if (n.tagName === "TEXTAREA") n.focus(); }
+  }
+
+  /* copia */
+  function flash(btn, txt){
+    var span = btn.querySelector("span"); if (!span) return;
+    var old = btn.getAttribute("data-label") || span.textContent;
+    btn.setAttribute("data-label", old);
+    span.textContent = txt; btn.classList.add("done");
+    clearTimeout(btn._t);
+    btn._t = setTimeout(function(){ span.textContent = old; btn.classList.remove("done"); }, 1800);
+  }
+  function selectNode(node){
+    try {
+      if (node.select) { node.focus(); node.select(); return; }
+      var r = document.createRange(); r.selectNodeContents(node);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    } catch (e) {}
+  }
+  function copyFrom(btn, node, text){
+    function fallback(){
+      selectNode(node);
+      var ok = false; try { ok = document.execCommand("copy"); } catch (e) {}
+      flash(btn, ok ? "Copiato" : "Selezionato: premete Cmd+C");
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function(){ flash(btn, "Copiato"); }, fallback);
+      } else fallback();
+    } catch (e) { fallback(); }
+  }
+
+  /* parole: spiegazione al tocco */
+  var pop = $("#pop"), popFor = null;
+  function hidePop(){ pop.hidden = true; popFor = null; }
+  function showPop(btn){
+    var key = btn.getAttribute("data-term");
+    var g = GLOSS.filter(function(x){ return x[0] === key; })[0];
+    if (!g) return;
+    if (popFor === btn) { hidePop(); return; }
+    pop.textContent = "";
+    pop.appendChild(el("b", null, g[0]));
+    pop.appendChild(el("span", null, g[1]));
+    var more = el("button", "link", "Tutte le parole"); more.type = "button"; more.setAttribute("data-drawer", "parole");
+    pop.appendChild(more);
+    pop.hidden = false; popFor = btn;
+    var r = btn.getBoundingClientRect(), pw = pop.offsetWidth, vw = document.documentElement.clientWidth;
+    var left = Math.min(Math.max(16, r.left + window.scrollX), window.scrollX + vw - pw - 16);
+    pop.style.left = left + "px";
+    pop.style.top = (r.bottom + window.scrollY + 8) + "px";
+  }
+
+  /* pannello parole e regole */
+  var drawer = $("#drawer"), scrim = $("#scrim"), lastFocus = null;
+  function openDrawer(section){
+    hidePop();
+    lastFocus = document.activeElement;
+    drawer.hidden = false; scrim.hidden = false;
+    var target = { parole:"d-parole", regole:"d-regole", s4:"d-s4" }[section] || "d-parole";
+    var t = document.getElementById(target);
+    var body = $("#drawer-body");
+    body.scrollTop = t ? t.offsetTop - body.offsetTop - 8 : 0;
+    $("#drawer-close").focus();
+  }
+  function closeDrawer(){
+    drawer.hidden = true; scrim.hidden = true;
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  /* clic */
+  document.addEventListener("click", function(e){
+    var t = e.target.closest ? e.target.closest("button") : null;
+    if (!pop.hidden && !pop.contains(e.target) && !(t && t.hasAttribute("data-term"))) hidePop();
+    if (!t) return;
+    if (t.hasAttribute("data-set-fn")) { S.fn = t.getAttribute("data-set-fn"); save(); render(); return; }
+    if (t.hasAttribute("data-set-sg")) { S.sg = t.getAttribute("data-set-sg"); save(); render(); return; }
+    if (t.hasAttribute("data-copy")) {
+      var box = t.closest(".paste"), node = box && box.querySelector(".paste-text");
+      if (node && !t.disabled) copyFrom(t, node, node.textContent.trim());
+      return;
+    }
+    if (t.hasAttribute("data-copy-from")) {
+      var ta = document.getElementById(t.getAttribute("data-copy-from"));
+      var txt = ta.value.trim();
+      if (!txt) { ta.focus(); flash(t, "Scrivete prima la riga"); return; }
+      if (!/^ha sbagliato/i.test(txt)) txt = "ha sbagliato: " + txt;
+      copyFrom(t, ta, txt); return;
+    }
+    if (t.hasAttribute("data-term")) { e.stopPropagation(); showPop(t); return; }
+    if (t.hasAttribute("data-drawer")) { openDrawer(t.getAttribute("data-drawer")); return; }
+    if (t.hasAttribute("data-jump")) {
+      var sec = document.getElementById(t.getAttribute("data-jump")), body = $("#drawer-body");
+      if (sec) body.scrollTop = sec.offsetTop - body.offsetTop - 8;
+      return;
+    }
+    if (t.id === "drawer-close") { closeDrawer(); return; }
+    if (t.id === "ctx") {
+      if (!S.sg) goTo("inizio", "scelta-sg"); else goTo("passo-2", "scelta-fn");
+      return;
+    }
+    if (t.id === "close-now") {
+      closeDrawer(); show("passo-6"); setTab("chiudi");
+      var panel = $("#panel-chiudi"); if (panel) panel.scrollIntoView({block:"start"});
+      window.scrollBy(0, -90);
+      return;
+    }
+    if (t.hasAttribute("data-tab")) { setTab(t.getAttribute("data-tab")); return; }
+    if (t.hasAttribute("data-tab-go")) {
+      setTab(t.getAttribute("data-tab-go"));
+      var tl = $(".tabs"); if (tl) { tl.scrollIntoView({block:"start"}); window.scrollBy(0, -90); }
+      return;
+    }
+    if (t.hasAttribute("data-go")) {
+      if (!drawer.hidden) closeDrawer();
+      goTo(t.getAttribute("data-go"), t.getAttribute("data-focus"));
+      return;
+    }
+  });
+  scrim.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape") { if (!drawer.hidden) closeDrawer(); hidePop(); }
+    var tab = e.target.closest && e.target.closest("[role=tab]");
+    if (tab && (e.key === "ArrowRight" || e.key === "ArrowLeft")) {
+      var i = TABS.indexOf(tab.getAttribute("data-tab"));
+      i = (i + (e.key === "ArrowRight" ? 1 : -1) + TABS.length) % TABS.length;
+      setTab(TABS[i], true); e.preventDefault();
+    }
+  });
+  document.addEventListener("change", function(e){
+    var c = e.target;
+    if (c.hasAttribute("data-gate")) { S.gates[c.getAttribute("data-gate")] = c.checked; save(); render(); }
+    if (c.hasAttribute("data-check")) { S.checks[c.getAttribute("data-check")] = c.checked; save(); }
+  });
+  var ta = $("#errore");
+  ta.value = S.errore;
+  ta.addEventListener("input", function(){ S.errore = ta.value; save(); });
+  window.addEventListener("resize", hidePop);
+
+  var h = (location.hash || "").slice(1);
+  render();
+  setTab(S.tab);
+  show(VIEWS.indexOf(h) > -1 ? h : S.view, {keepScroll:true});
+})();
+</script>
